@@ -1,47 +1,43 @@
-require("dotenv").config();
+// Dependencies
 var express = require("express");
 var exphbs = require("express-handlebars");
 
-var db = require("./models");
-
 var app = express();
-var PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+var PORT = process.env.PORT || 8080;
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+// Data
+var lunches = [
+  {
+    lunch: "Beet & Goat Cheese Salad with minestrone soup."
+  },
+  {
+    lunch: "Pizza, two double veggie burgers, fries with a Big Gulp"
+  }
+];
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+app.get("/signup", function(req, res) {
+  res.render("index", lunches[0]);
+});
 
-var syncOptions = { force: false };
+app.get("/signin", function(req, res) {
+  res.render("index", lunches[1]);
+});
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+app.get("/index", function(req, res) {
+  res.render("all-lunches", {
+    foods: lunches,
+    eater: "david"
   });
 });
 
-module.exports = app;
+// Start our server so that it can begin listening to client requests.
+app.listen(PORT, function() {
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
+});
