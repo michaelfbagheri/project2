@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Party = sequelize.define("Party", {
     // Giving the Author model a name of type STRING
     eventName: {
@@ -31,13 +31,13 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  Party.associate = function (models) {
-    // Associating party with User
-    // When an Party is deleted, also delete any associated User
-    Event.hasOne(models.User, {
-      onDelete: "cascade"
-    });
-  };
+  // Party.associate = function(models) {
+  //   // Associating party with User
+  //   // When an Party is deleted, also delete any associated User
+  //   Party.hasOne(models.User, {
+  //     onDelete: "cascade"
+  //   });
+  // };
 
 
   return Party;
