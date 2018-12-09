@@ -32,7 +32,6 @@ $(document).ready(function() {
     createAccount(email, password, userName).then(function(uid) {
       newUser.Authentication = uid;
 
-      debugger;
       console.log("new user being added with name: " + newUser.name + " " + newUser.Authentication);
       $.ajax({
         method: "POST",
