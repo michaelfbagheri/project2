@@ -10,8 +10,7 @@ module.exports = function(app) {
     });
   });
 
-
-  app.get("/", function (req, res) {
+  app.get("/", function(req, res) {
     db.Party.findAll({}).then(function(dbParty) {
       var hbsObject = {
         party: dbParty
@@ -21,21 +20,19 @@ module.exports = function(app) {
     });
   });
 
-
-
   app.post("/party/create", function (req, res) {
-    // console.log("the object you sent to /party/create is " + req.body.event_name);
-    db.Party.create({
-      eventName: req.body.event_name,
-      eventAddress: req.body.event_address,
-      eventDate: req.body.event_date,
-      eventTime: req.body.event_time,
-      eventHostAuthenticationId: req.body.eventHostAuthenticationId
-    }).then(function(dbParty) {
-      // console.log(dbParty);
-      res.redirect("/");
-    });
-  });
+     // console.log("the object you sent to /party/create is " + req.body.event_name);
+     db.Party.create({
+       eventName: req.body.eventName,
+       eventAddress: req.body.eventAddress,
+       eventDate: req.body.eventDate,
+       eventTime: req.body.eventTime,
+       eventHostAuthenticationId: req.body.eventHostAuthenticationId
+     }).then(function(dbParty) {
+       // console.log(dbParty);
+       res.redirect("/");
+     });
+   });
 
   app.post("/user/create", function(req, res) {
     console.log("object you've sent to /user/create is " + req.body.Authentication);
