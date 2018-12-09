@@ -10,9 +10,11 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var currentUserLoggedIn = " ";
-  if (currentUserLoggedIn !== " ") {
-    $('#current-username').text(currentUserLoggedIn)
-  };
+
+  function updateDom() {
+
+    $('#current-username').text(firebase.auth().currentUser.displayName)
+  }
 
 
   $("#host-button-enable").on("click", function () {
@@ -44,10 +46,8 @@ $(document).ready(function () {
     };
 
     createAccount(email, password, userName).then(function (uid) {
-      newUser.Authentication = uid;
-      $('#current-username').text(uid);
-
-
+      // newUser.Authentication = uid;
+      // $('#current-username').text(uid);
       console.log("new user being added with name: " + newUser.name + " " + newUser.Authentication);
       $.ajax({
         method: "POST",
@@ -55,7 +55,6 @@ $(document).ready(function () {
         data: newUser
       }).then(function (data) {
         console.log(data);
-        debugger;
         location.reload();
       });
     });
@@ -120,4 +119,6 @@ $(document).ready(function () {
       console.log("please sign up or login");
     }
   });
+
+  updateDom();
 });
