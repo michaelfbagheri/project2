@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var config = {
     apiKey: "AIzaSyCfxrNFR0IkXIzWEPrkJVR5UX0MGrqteL0",
     authDomain: "mikesproject-bd0c2.firebaseapp.com",
@@ -9,9 +9,23 @@ $(document).ready(function() {
   };
   firebase.initializeApp(config);
 
-  console.log("inside js");
+  var currentUserLoggedIn = " ";
+  if (currentUserLoggedIn !== " ") {
+    $('#current-username').text(currentUserLoggedIn)
+  };
 
-  $(".user-create").on("submit", function(event) {
+
+  $("#host-button-enable").on("click", function () {
+    var uid = firebase.auth().currentUser;
+    if (uid == null) {
+      $("#host-button-enable").prop("disabled", true);
+      $("#host-button-enable").text("sign in Please!");
+
+    };
+  });
+
+
+  $(".user-create").on("submit", function (event) {
     event.preventDefault();
     var userName = $(this)
       .children(".name")
@@ -29,16 +43,19 @@ $(document).ready(function() {
       Authentication: "XXXXXXXXXXXXX"
     };
 
-    createAccount(email, password, userName).then(function(uid) {
+    createAccount(email, password, userName).then(function (uid) {
       newUser.Authentication = uid;
+      $('#current-username').text(uid);
+
 
       console.log("new user being added with name: " + newUser.name + " " + newUser.Authentication);
       $.ajax({
         method: "POST",
         url: "/user/create",
         data: newUser
-      }).then(function(data) {
+      }).then(function (data) {
         console.log(data);
+        debugger;
         location.reload();
       });
     });
@@ -49,13 +66,14 @@ $(document).ready(function() {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(function() {
+      .then(function () {
         return firebase
           .auth()
           .currentUser.updateProfile({ displayName: userName })
-          .then(function() {
+          .then(function () {
             var name = firebase.auth().currentUser.displayName;
             var uid = firebase.auth().currentUser.uid;
+            console.log("new user was created with name:" + name + " and " + uid + " as Id.");
             console.log("new user was created with name:" + name + " and " + uid + " as Id.");
             return uid;
           });
@@ -63,7 +81,7 @@ $(document).ready(function() {
   }
 
   //create an event
-  $(".party-create").on("submit", function(event) {
+  $(".party-create").on("submit", function (event) {
     event.preventDefault();
 
     var uid = firebase.auth().currentUser.uid;
@@ -81,6 +99,12 @@ $(document).ready(function() {
           .trim(),
         eventTime: $("#event-time")
           .val()
+          .trim(),
+        eventDiscription: $('#event-description')
+          .val()
+          .trim(),
+        eventZipCode: $('#event-zip')
+          .val()
           .trim()
       };
 
@@ -88,7 +112,7 @@ $(document).ready(function() {
         method: "POST",
         url: "/party/create",
         data: addEvent
-      }).then(function(data) {
+      }).then(function (data) {
         console.log(data);
         location.reload();
       });
