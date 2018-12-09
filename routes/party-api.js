@@ -29,7 +29,8 @@ module.exports = function(app) {
       eventName: req.body.event_name,
       eventAddress: req.body.event_address,
       eventDate: req.body.event_date,
-      eventTime: req.body.event_time
+      eventTime: req.body.event_time,
+      eventHostAuthenticationId: req.body.eventHostAuthenticationId
     }).then(function(dbParty) {
       // console.log(dbParty);
       res.redirect("/");
