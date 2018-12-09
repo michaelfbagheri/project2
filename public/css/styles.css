@@ -177,3 +177,54 @@ h2 {
 .middle-module {
   background-color: white;
 }
+
+.bkgrd-white {
+  background-color:white;
+  border-radius:5px;
+}
+
+/* party Time Page */
+
+#party-name {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 39px;
+    margin-right: 12px;
+}
+
+.responsive-table p {
+    display: block;
+    background-color: #f1f1f1;
+    padding: 7px 5px;
+    color: #a99e9e;
+}
+
+thead {
+    width: calc( 100% - 1em );
+    text-align: center;
+}
+
+thead, tbody tr {
+    display: table;
+    table-layout: fixed;
+    width:100%;
+}
+
+table.striped tr {
+    border-bottom: none;
+}
+td, th {
+    padding: 15px 5px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+tbody {
+    display: block;
+    height: 200px;
+    overflow: auto;
+}
+table.striped>tbody>tr:nth-child(odd) {
+    background-color: rgba(226, 255, 236, 0.5);
+}

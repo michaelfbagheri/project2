@@ -1,261 +1,88 @@
 <!--   Body Section   -->
-<div class="container">
-
-    <!-- Zone 3  -->
-    <div class="section icon-block">
-        <!-- Zone 2  -->
-        <div class="section">
-            <div class="row">
-                <div class="col s12 m12">
-                    <div class="non-mobile-1 right-align">
-                        <a class="btn-halloween-org btn" href="#modal1">Host An Event</a>
-
-                        <div id="logged-in"></div>
-                    </div>
-                    <div class="btn-mobile-mn">
-                        <div class="col s12"><a class="btn-halloween-org btn" href="#modal1">Host An Event</a></div>
-                        <div class="col s12"><a class="btn-halloween btn" href="#modal2">Sign Up</a></div>
-                        <div class="col s12"><a class="btn-halloween btn" href="#modal3">Sign In</a></div>
-                        <div class="col s12"><a class="btn-halloween btn sign-out">Sign Out</a></div>
-                        <div id="logged-in"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m12">
-                    <span id="party-name"></span>
-                    <span id="party-date"></span>
-                    <span id="party-time"></span>
-                </div>
-            </div>
-            <div class="row">
-                <p>Welcome to the My Party app! Use the SIGN UP button above to start planning your next party or
-                    event.</p>
-            </div>
-            <div class="row">
-                <a class="btn-halloween-org btn" href="#modal4">Click Here to Add items</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m4 responsive-table">
-                <table class="striped">
-                    <thead>
-                        <p><strong>Items to Bring.</strong></p>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Qty</th>
-                            <th>Add Items</th>
-                        </tr>
-                    </thead>
-                    <tbody class="responsive-table-body-req"></tbody>
-                </table>
-            </div>
-            <div class="col s12 m4 responsive-table">
-                <table class="striped">
-                    <thead>
-                        <p><strong>Being brought by Guests</strong></p>
-                        <tr>
-                            <th>Item</th>
-                            <th>Qty</th>
-                        </tr>
-                    </thead>
-                    <tbody class="responsive-table-body-res">
-                    </tbody>
-                </table>
-            </div>
-            <div class="col s12 m4 responsive-table">
-                <table class="striped">
-                    <thead>
-                        <p><strong>Attendees</strong></p>
-                        <tr>
-                            <th>Names</th>
-                        </tr>
-                    </thead>
-                    <tbody class="responsive-table-body-name" id="attendees">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Zone 5  -->
-        <hr>
-        <div class="row">
-            <div class="col s12 m8 costume-finder">
-                <h5>Costume Finder</h5>
-                <div id="content">
-                    <input id="search" type="text" placeholder="search text" />
-                    <button id="submit" class="btn-halloween btn">Submit</button>
-                    <button id="reset" class="btn-halloween btn">RESET</button>
-                    <div id="outputDiv"></div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div id="event-location"></div>
-                <div id="map"></div>
-            </div>
-        </div>
+<div class="container bkgrd-white">
+  <div class="row">
+    <div class="col-md-12">
+      <span class="float-right"><strong>Login UID</strong></span>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <span id="party-name"><strong>Party Name</strong></span>
+      <span id="party-date">10-31-18</span>
+      <span id="party-time">12 AM</span>
+      <p>Welcome to the My Party app! Use the SIGN UP button above to start planning your next party or event.</p>
+      <button type="button" class="btn btn-secondary">Click Here to Add Items</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 responsive-table">
+      <p><strong>Items to Bring.</strong></p>
+      <table class="striped">
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Qty</th>
+              <th>Add Items</th>
+            </tr>
+          </thead>
+          <tbody class="responsive-table-body-req">
+            <tr>
+              <td>Gin</td>
+              <td>5</td>
+              <td> <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons req-items" data-orgitem="0">add</i></a></td>
+            </tr>
+            <tr>
+              <td>Juice</td>
+              <td>1</td>
+              <td> <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons req-items" data-orgitem="1">add</i></a></td>
+            </tr>
+            <tr>
+              <td>pizza</td>
+              <td>3</td>
+              <td> <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons req-items" data-amenitem="0">add</i></a></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-md-4 responsive-table">
+         <p><strong>Being brought by Guests</strong></p><table class="striped">
+          <thead>
+
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody class="responsive-table-body-res">
+            <tr>
+              <td>Gin </td>
+              <td>5</td>
+           </tr>
+
+
+            <tr>
+              <td>Juice </td>
+              <td>5</td>
+           </tr>
+
+
+            <tr>
+                <td>pizza </td>
+                <td>7</td>
+           </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4 responsive-table">
+         <p><strong>Attendees</strong></p><table class="striped">
+          <thead>
+            <tr>
+              <th>Names</th>
+            </tr>
+          </thead>
+          <tbody class="responsive-table-body-name" id="attendees"></tbody>
+        </table>
+    </div>>
+  </div>
 </div>
-</div>
-
-
-<!-- Modal Structure -->
-<!-- Host Sign Up Modal 1 -->
-<div id="modal1" class="modal">
-    <!-- Navigation -->
-    <div class="stepwizard">
-        <div class="stepwizard-row setup-panel">
-            <div class="stepwizard-step">
-                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                <p>Step 1</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                <p>Step 2</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                <p>Step 3</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-                <p>Step 4</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Step 1 -->
-    <div class="row setup-content" id="step-1">
-        <div class="col s12">
-            <div class="col s12">
-                <div class="col s12">
-                    <div class="input-field col s12">
-                        <label class="control-label">Name</label>
-                        <input id="host-name" maxlength="100" type="text" required="required" class="form-control"
-                            placeholder="Enter First Name" />
-                    </div>
-                    <div class="input-field col s12">
-                        <label class="control-label">Email Address</label>
-                        <input id="host-email" maxlength="100" type="text" required="required" class="form-control"
-                            placeholder="johndoe@email.com" />
-                    </div>
-                    <div class="input-field col s12">
-                        <label class="control-label">Password</label>
-                        <input id="host-password" maxlength="100" type="password" required="required" class="form-control"
-                            placeholder="********" />
-                    </div>
-                    <button class="btn btn-primary nextBtn btn-lg pull-right btn-halloween" type="button">Next</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Step 2 -->
-
-    <div class="row setup-content" id="step-2">
-        <div class="col s12">
-            <div class="col-md-12">
-                <div class="input-field col s12">
-                    <label class="control-label">Event Name</label>
-                    <input id="event-name" maxlength="200" type="text" required="required" class="form-control"
-                        placeholder="Give your event a cool name?" />
-                </div>
-                <div class="input-field col s12">
-                    <label class="control-label">Event Date</label>
-                    <input id="event-date" maxlength="200" type="text" required="required" class="form-control"
-                        placeholder="Enter Event Date" />
-                </div>
-                <div class="input-field col s12">
-                    <label class="control-label">Event Time</label>
-                    <input id="event-time" maxlength="200" type="text" required="required" class="form-control"
-                        placeholder="What time does the party Start?" />
-                </div>
-                <button class="btn btn-primary nextBtn btn-lg pull-right btn-halloween" type="button">Next</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Step 3 -->
-
-    <div class="row setup-content" id="step-3">
-        <div class="col s12">
-            <div class="col-md-12">
-                <div class="input-field col s12">
-                    <label class="control-label">Address</label>
-                    <input id="event-address" maxlength="200" type="text" required="required" class="form-control"
-                        placeholder="Event Address" />
-                </div>
-                <div class="input-field col s4">
-                    <label class="control-label">City</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Event Date" />
-                </div>
-                <div class="input-field col s4">
-                    <label class="control-label">State</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Event Location" />
-                </div>
-                <div class="input-field col s4">
-                    <label class="control-label">Zip</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Event Location" />
-                </div>
-                <button class="btn btn-primary nextBtn btn-lg pull-right btn-halloween" type="button">Next</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Step 4 -->
-
-    <div class="setup-content" id="step-4">
-        <div class="row">
-            <div class="input-field col s10">
-                <label class="control-label">Items Needed</label>
-                <input id="items-needed-1" maxlength="200" type="text" required="required" class="form-control item-name"
-                    placeholder="Enter Event Name" />
-            </div>
-            <div class="input-field col s2">
-                <label class="control-label">Number</label>
-                <input id="quantity-needed-1" maxlength="200" type="text" required="required" class="form-control item-number"
-                    placeholder="" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s10">
-                <label class="control-label">Items Needed</label>
-                <input id="items-needed-2" maxlength="200" type="text" required="required" class="form-control item-name"
-                    placeholder="Enter Event Name" />
-            </div>
-            <div class="input-field col s2">
-                <label class="control-label">Number</label>
-                <input id="quantity-needed-2" maxlength="200" type="text" required="required" class="form-control item-number"
-                    placeholder="" />
-            </div>
-        </div>
-        <button id="submit-finish-btn" class="btn btn-success btn-lg pull-right btn-halloween-org" type="submit">Finish!</button>
-    </div>
-</div>
-
-<!-- Modal 4 Adding Items -->
-<div id="modal4" class="modal row setup-content">
-    <div class="input-field col s6">
-        <label class="control-label">Item</label>
-        <input id="add-item-name" maxlength="100" type="text" required="required" class="form-control" placeholder="What are you bringing to the party?" />
-    </div>
-    <div class="input-field col s6">
-        <label class="control-label">Quantity</label>
-        <input id="add-item-qty" maxlength="100" type="text" required="required" class="form-control" placeholder="How Many?" />
-    </div>
-    <button id="submit-item-name" class="btn btn-primary btn-lg pull-right btn-halloween-org" type="button">Submit</button>
-</div>
-
-<script src="js/init.js"></script>
-<script src="js/bug.js"></script>
-<script type='text/javascript'>
-    // default fruit fly bug:
-    new BugController({
-    });
-
-    // default spiders:
-    new SpiderController({
-    });
-</script>
-
-</body>
