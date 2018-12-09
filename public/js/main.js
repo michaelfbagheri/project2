@@ -7,14 +7,33 @@ $(document).ready(function () {
     storageBucket: "mikesproject-bd0c2.appspot.com",
     messagingSenderId: "911450662789"
   };
+  //Firebase Authentication section
   firebase.initializeApp(config);
-
-  var currentUserLoggedIn = " ";
-
-  function updateDom() {
-
-    $('#current-username').text(firebase.auth().currentUser.displayName)
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log(firebase.auth().currentUser.displayName)
+      $('#current-username').text(firebase.auth().currentUser.displayName)
+    } else {
+      $('#current-username').text("please Login")
+    }
+  });
+  function createAccount(email, password, userName) {
+    firebase.auth().signOut();
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(function () {
+        return firebase
+          .auth()
+          .currentUser.updateProfile({ displayName: userName })
+          .then(function () {
+            return;
+          });
+      });
   }
+
+
+
 
 
   $("#host-button-enable").on("click", function () {
@@ -60,24 +79,6 @@ $(document).ready(function () {
     });
   });
 
-  function createAccount(email, password, userName) {
-    firebase.auth().signOut();
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(function () {
-        return firebase
-          .auth()
-          .currentUser.updateProfile({ displayName: userName })
-          .then(function () {
-            var name = firebase.auth().currentUser.displayName;
-            var uid = firebase.auth().currentUser.uid;
-            console.log("new user was created with name:" + name + " and " + uid + " as Id.");
-            console.log("new user was created with name:" + name + " and " + uid + " as Id.");
-            return uid;
-          });
-      });
-  }
 
   //create an event
   $(".party-create").on("submit", function (event) {
@@ -120,5 +121,5 @@ $(document).ready(function () {
     }
   });
 
-  updateDom();
+
 });
