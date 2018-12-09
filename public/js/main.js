@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var config = {
     apiKey: "AIzaSyCfxrNFR0IkXIzWEPrkJVR5UX0MGrqteL0",
     authDomain: "mikesproject-bd0c2.firebaseapp.com",
@@ -11,7 +11,7 @@ $(document).ready(function () {
 
   console.log("inside js");
 
-  $(".user-create").on("submit", function (event) {
+  $(".user-create").on("submit", function(event) {
     event.preventDefault();
     var userName = $(this)
       .children(".name")
@@ -29,7 +29,7 @@ $(document).ready(function () {
       Authentication: "XXXXXXXXXXXXX"
     };
 
-    createAccount(email, password, userName).then(function (uid) {
+    createAccount(email, password, userName).then(function(uid) {
       newUser.Authentication = uid;
 
       console.log("new user being added with name: " + newUser.name + " " + newUser.Authentication);
@@ -37,7 +37,7 @@ $(document).ready(function () {
         method: "POST",
         url: "/user/create",
         data: newUser
-      }).then(function (data) {
+      }).then(function(data) {
         console.log(data);
         location.reload();
       });
@@ -49,11 +49,11 @@ $(document).ready(function () {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(function () {
+      .then(function() {
         return firebase
           .auth()
           .currentUser.updateProfile({ displayName: userName })
-          .then(function () {
+          .then(function() {
             var name = firebase.auth().currentUser.displayName;
             var uid = firebase.auth().currentUser.uid;
             console.log("new user was created with name:" + name + " and " + uid + " as Id.");
@@ -62,34 +62,38 @@ $(document).ready(function () {
       });
   }
 
-  $(".user-create").on("submit", function (event) {
+  //create an event
+  $(".party-create").on("submit", function(event) {
     event.preventDefault();
 
-    var addEvent = {
-      eventHostAuthenticationId: firebase.auth().currentUser.uid,
-      eventName: $("#event-name")
-        .val()
-        .trim(),
-      eventAddress: $("#event-address")
-        .val()
-        .trim(),
-      eventDate: $("#event-date")
-        .val()
-        .trim(),
-      eventTime: $("#event-time")
-        .val()
-        .trim()
-    };
+    var uid = firebase.auth().currentUser.uid;
+    if (uid) {
+      var addEvent = {
+        eventHostAuthenticationId: firebase.auth().currentUser.uid,
+        eventName: $("#event-name")
+          .val()
+          .trim(),
+        eventAddress: $("#event-address")
+          .val()
+          .trim(),
+        eventDate: $("#event-date")
+          .val()
+          .trim(),
+        eventTime: $("#event-time")
+          .val()
+          .trim()
+      };
 
-    $.ajax({
-      method: "POST",
-      url: "/party/create",
-      data: addEvent
-    }).then(function (data) {
-      console.log(data);
-      location.reload();
-    });
-  });
-});
+      $.ajax({
+        method: "POST",
+        url: "/party/create",
+        data: addEvent
+      }).then(function(data) {
+        console.log(data);
+        location.reload();
+      });
+    } else {
+      console.log("please sign up or login");
+    }
   });
 });
