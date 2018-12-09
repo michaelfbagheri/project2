@@ -133,6 +133,19 @@
 			console.log('lat and lng', lat, lng)
 		});
 
+<<<<<<< HEAD
+	document.querySelector('#new-record-form').addEventListener('submit', (e) => {
+		e.preventDefault();
+		const record = {
+			title: document.querySelector('#event-name').value,
+			description: document.querySelector('#desc-input').value,
+			zip: document.querySelector('#zip-input').value,
+			lat,
+			lng
+		}
+		console.log('yoooooo', record);
+		fetch('/add-record', {
+=======
 		document.querySelector('#new-record-form').addEventListener('submit', (e) => {
 			e.preventDefault();
 			const record = {
@@ -144,6 +157,7 @@
 			}
 			console.log('yoooooo', record);
 			fetch('/add-record', {
+>>>>>>> 7e548b9e8619074ad181b8dcae3d0bbe7091d730
 				method: 'POST',
 				body: JSON.stringify(record),
 				headers: {
