@@ -37,11 +37,11 @@ module.exports = function(app) {
   });
 
   app.post("/user/create", function(req, res) {
-    console.log("object you've sent to /user/create is " + req.body.user);
+    console.log("object you've sent to /user/create is " + req.body.Authentication);
     db.User.create({
       name: req.body.name,
       email: req.body.email,
-      AuthenticationId: req.body.authenticationId
+      Authentication: req.body.Authentication
     }).then(function(dbUser) {
       console.log(dbUser);
       res.redirect("/");

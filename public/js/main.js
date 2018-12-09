@@ -26,14 +26,14 @@ $(document).ready(function() {
     var newUser = {
       name: userName,
       email: email,
-      authenticationId: "XXXXXXXXXXXXX"
+      Authentication: "XXXXXXXXXXXXX"
     };
 
     createAccount(email, password, userName).then(function(uid) {
-      newUser.authenticationId = uid;
+      newUser.Authentication = uid;
 
       debugger;
-      console.log("new user being added with name: " + newUser.name);
+      console.log("new user being added with name: " + newUser.name + " " + newUser.Authentication);
       $.ajax({
         method: "POST",
         url: "/user/create",

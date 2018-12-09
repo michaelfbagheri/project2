@@ -16,7 +16,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     Authentication: {
       type: DataTypes.STRING,
-      // parimaryKey: true,
       allowNull: false,
       validate: {
         len: [1]
