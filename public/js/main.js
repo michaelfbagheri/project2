@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   console.log("inside js");
 
-  $(".user-create").on("submit", function (event) {
+  $(".user-create").on("submit", function(event) {
     event.preventDefault();
     var userName = $(this)
       .children(".name")
@@ -29,7 +29,7 @@ $(document).ready(function() {
       authenticationId: "XXXXXXXXXXXXX"
     };
 
-    createAccount(email, password, userName).then(function (uid) {
+    createAccount(email, password, userName).then(function(uid) {
       newUser.authenticationId = uid;
 
       debugger;
@@ -38,7 +38,7 @@ $(document).ready(function() {
         method: "POST",
         url: "/user/create",
         data: newUser
-      }).then(function (data) {
+      }).then(function(data) {
         console.log(data);
         location.reload();
       });
@@ -49,11 +49,11 @@ $(document).ready(function() {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(function () {
+      .then(function() {
         return firebase
           .auth()
           .currentUser.updateProfile({ displayName: userName })
-          .then(function () {
+          .then(function() {
             var name = firebase.auth().currentUser.displayName;
             var uid = firebase.auth().currentUser.uid;
             console.log("new user was created with name:" + name + " and " + uid + " as Id.");

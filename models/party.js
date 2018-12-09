@@ -8,6 +8,13 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+    eventHostAuthenticationId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
     eventAddress: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,13 +39,24 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   // Party.associate = function(models) {
-  //   // Associating party with User
-  //   // When an Party is deleted, also delete any associated User
-  //   Party.hasOne(models.User, {
+  //   Party.belongsTo(models.User, {
   //     onDelete: "cascade"
   //   });
   // };
 
+  // Party.associate = function(models) {
+  //   Party.hasMany(models.Item, {
+  //     onDelete: "cascade"
+  //   });
+  // };
+
+  Party.associate = function(models) {
+    Party.belongsToMany(models.User, {
+      as: "Users",
+      through: { model: models.Attendee, unique: false },
+      foreignKey: "party_id"
+    });
+  };
 
   return Party;
 };

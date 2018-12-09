@@ -14,14 +14,36 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    AuthenticationId: {
+    Authentication: {
       type: DataTypes.STRING,
+      // parimaryKey: true,
       allowNull: false,
       validate: {
         len: [1]
       }
     }
   });
+
+  //Creating an association in the Party table
+  // User.associate = function(models) {
+  //   User.hasMany(models.Party, {
+  //     onDelete: "cascade"
+  //   });
+  // };
+
+  // User.associate = function(models) {
+  //   User.hasMany(models.Item, {
+  //     onDelete: "cascade"
+  //   });
+  // };
+
+  User.associate = function(models) {
+    User.belongsToMany(models.Party, {
+      as: "Parties",
+      through: { model: models.Attendee, unique: false },
+      foreignKey: "user_id"
+    });
+  };
 
   return User;
 };
