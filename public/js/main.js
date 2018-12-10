@@ -32,17 +32,16 @@ $(document).ready(function () {
       });
   }
 
-
-
-
-
+  let lat, lng;
   $("#host-button-enable").on("click", function () {
-    var uid = firebase.auth().currentUser;
-    if (uid == null) {
-      $("#host-button-enable").prop("disabled", true);
-      $("#host-button-enable").text("sign in Please!");
-
-    };
+    const input = document.querySelector('#event-address');
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', (e) => {
+      const place = autocomplete.getPlace();
+      lat = place.geometry.location.lat();
+      lng = place.geometry.location.lng();
+      //console.log('lat and lng', lat, lng)
+    });
   });
 
 
@@ -84,7 +83,7 @@ $(document).ready(function () {
   $(".party-create").on("submit", function (event) {
     event.preventDefault();
 
-    var uid = firebase.auth().currentUser.uid;
+    var uid = firebase.auth().currentUser && firebase.auth().currentUser.uid;
     if (uid) {
       var addEvent = {
         eventHostAuthenticationId: firebase.auth().currentUser.uid,
@@ -105,7 +104,9 @@ $(document).ready(function () {
           .trim(),
         eventZipCode: $('#event-zip')
           .val()
-          .trim()
+          .trim(),
+        lat,
+        lng
       };
 
       $.ajax({
@@ -113,8 +114,16 @@ $(document).ready(function () {
         url: "/party/create",
         data: addEvent
       }).then(function (data) {
-        console.log(data);
-        location.reload();
+        console.log('first done', data);
+        $.ajax({
+          method: "POST",
+          url: "/add-record",
+          data: addEvent
+        }).then(function (data) {
+          console.log('second done', data);
+          window.location.reload();
+        });
+        //location.reload();
       });
     } else {
       console.log("please sign up or login");

@@ -5,14 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<!-- Javascript link -->
-	<script src="/js/googlemaps.js"></script>
-	<script src="/js/main.js"></script>
-	<!-- Firebase link -->
-	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+
 	<!-- Fontawesome link -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	 crossorigin="anonymous">
@@ -21,7 +14,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
 
 	<title>{{title}}</title>
-	<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body class="hero">
@@ -131,41 +123,19 @@
 	</div>
 
 	<!-- Javascript -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCauOYebxJITJGqbj_nxCGS3gdTP4WWcF4&sensor=false&libraries=places&language=en"></script>
 
-	<script>
-		let lat, lng;
-		const input = document.querySelector('#event-name');
-		const autocomplete = new google.maps.places.Autocomplete(input);
-		google.maps.event.addListener(autocomplete, 'place_changed', (e) => {
-			const place = autocomplete.getPlace();
-			lat = place.geometry.location.lat();
-			lng = place.geometry.location.lng();
-			console.log('lat and lng', lat, lng)
-		});
 
-		document.querySelector('#new-record-form').addEventListener('submit', (e) => {
-			e.preventDefault();
-			const record = {
-				title: document.querySelector('#eventName').value,
-				description: document.querySelector('#desc-input').value,
-				zip: document.querySelector('#zip-input').value,
-				lat,
-				lng
-			}
-			console.log('yoooooo', record);
-			fetch('/add-record', {
-				method: 'POST',
-				body: JSON.stringify(record),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			}).then(res => res.json())
-				.then(res => {
-					console.log('updated file content', res);
-				}).catch(res => console.log('dfdfsdfsdfsdfs', err))
-		});
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Javascript link -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCauOYebxJITJGqbj_nxCGS3gdTP4WWcF4&sensor=false&libraries=places&language=en&callback=initMap"
+  async defer></script>
+
+	<!-- Firebase link -->
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<script src="/js/googlemaps.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 
 </html>
